@@ -1,2 +1,2 @@
 # Avalons
-Hotel Management System
+Online Loan Management System
