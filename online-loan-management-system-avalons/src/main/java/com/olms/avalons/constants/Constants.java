@@ -16,4 +16,8 @@ public interface Constants {
 	// loan offer constants
 	String ACTIVE = "A";
 	String IN_ACTIVE = "I";
+	
+	// emi constants
+	String PENDING = "P";
+	String COMPLETED = "C";
 }

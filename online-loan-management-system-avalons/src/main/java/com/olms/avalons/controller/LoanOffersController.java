@@ -74,8 +74,6 @@ public class LoanOffersController {
 	@ResponseBody
 	public ModelMap getLoan(final HttpServletRequest request, @RequestBody Long loanOfferId) {
 
-		System.out.println(loanOfferId);
-
 		final LoanOffer loanOffer = offerService.findById(loanOfferId);
 
 		final ModelMap modelMap = new ModelMap();
@@ -86,8 +84,6 @@ public class LoanOffersController {
 	@PostMapping("delete-loan-offer")
 	@ResponseBody
 	public ModelMap DeleteLoan(final HttpServletRequest request, @RequestBody Long loanOfferId) {
-
-		System.out.println(loanOfferId);
 
 		offerService.deleteById(loanOfferId);
 

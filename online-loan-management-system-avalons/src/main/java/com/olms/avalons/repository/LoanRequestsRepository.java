@@ -24,9 +24,11 @@ public interface LoanRequestsRepository extends JpaRepository<LoanRequestsEntity
 	@Query(value = "SELECT * FROM loan_request req WHERE req.branch_id = :branchId AND req.status = :status", nativeQuery = true)
 	List<LoanRequestsEntity> findAllLoanRequests(@Param("branchId") final Long branchId,
 			@Param("status") final String status);
-	
-	
+
 	@Modifying(clearAutomatically = true)
 	@Query(value = "UPDATE loan_request lr SET lr.status = :status WHERE lr.request_id = :requestId", nativeQuery = true)
 	void processLoanRequest(@Param("requestId") final Long requestId, @Param("status") final String status);
+
+	@Query(value = "SELECT * FROM loan_request req WHERE req.request_id = :requestId", nativeQuery = true)
+	LoanRequestsEntity findLoanRequestById(@Param("requestId") final Long requestId);
 }

@@ -17,8 +17,6 @@ public class HomeController {
 	@GetMapping("/")
 	public ModelAndView home(Model model) {
 
-		System.out.println("came to home");
-
 		return new ModelAndView("index");
 	}
 }

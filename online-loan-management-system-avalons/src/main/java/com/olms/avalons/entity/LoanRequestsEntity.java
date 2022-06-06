@@ -100,7 +100,7 @@ public class LoanRequestsEntity {
 		this.customerEntity = customerEntity;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "offer_id")
 	public LoanOffersEntity getOffersEntity() {
 		return offersEntity;

@@ -274,6 +274,7 @@ table.table .avatar {
 	        },
 	        success: function (response) {
 	        	console.log(response.message);
+	        	location.href = "/loan-request/requested-list";
 	        }
 	    });
 	}
@@ -289,6 +290,7 @@ table.table .avatar {
 	        },
 	        success: function (response) {
 	        	console.log(response.message);
+	        	location.href = "/loan-request/requested-list";
 	        }
 	    });
 	}

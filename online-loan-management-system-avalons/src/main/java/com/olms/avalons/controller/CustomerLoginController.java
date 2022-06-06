@@ -71,8 +71,6 @@ public class CustomerLoginController {
 	public ModelAndView register(final HttpServletRequest request,
 			@ModelAttribute("customerLogin") CustomerCommand customerLogin, final BindingResult result) {
 
-		System.out.println("register Came");
-
 		final Customer customer = new Customer();
 		copyProperties(customerLogin, customer);
 
