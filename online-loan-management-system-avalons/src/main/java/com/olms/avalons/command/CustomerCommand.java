@@ -23,6 +23,8 @@ public class CustomerCommand {
 	private Date dob;
 	private String gender;
 	private String password;
+	private String ssnNumber;
+	private String occupation;
 
 	public Long getCustomerId() {
 		return customerId;
@@ -95,4 +97,21 @@ public class CustomerCommand {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getSsnNumber() {
+		return ssnNumber;
+	}
+
+	public void setSsnNumber(String ssnNumber) {
+		this.ssnNumber = ssnNumber;
+	}
+
+	public String getOccupation() {
+		return occupation;
+	}
+
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
+	}
+
 }

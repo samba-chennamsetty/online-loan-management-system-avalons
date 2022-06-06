@@ -25,7 +25,7 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> 
 	CustomerEntity findByCustomerNameAndPassword(final String customerEmailId, final String password);
 
 	@Modifying(clearAutomatically = true)
-	@Query(value = "insert into loan.customer (address, dob, email_id, first_name, gender, last_name, contact_num, password) values (:#{#customer.address}, :#{#customer.dob}, :#{#customer.emailId}, :#{#customer.firstName}, :#{#customer.gender}, :#{#customer.lastName}, :#{#customer.mobileNumber}, :#{#customer.password})", nativeQuery = true)
+	@Query(value = "insert into loan.customer (address, dob, email_id, first_name, gender, last_name, contact_num, password, ssn_number,occupation) values (:#{#customer.address}, :#{#customer.dob}, :#{#customer.emailId}, :#{#customer.firstName}, :#{#customer.gender}, :#{#customer.lastName}, :#{#customer.mobileNumber}, :#{#customer.password}, :#{#customer.ssnNumber}, :#{#customer.occupation})", nativeQuery = true)
 	void saveCustomer(@Param("customer") final Customer customer);
 
 	@Query(value = "SELECT LAST_INSERT_ID()", nativeQuery = true)

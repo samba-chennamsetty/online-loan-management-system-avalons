@@ -23,9 +23,9 @@ import javax.persistence.Table;
 public class UserActivityEntity {
 
 	private Long activityId;
-	private Date loginTime;
-	private Date logoutTime;
+	// Loan applied, password changed, login, logout, payment paid.
 	private String activityType;
+	private Date activityTime;
 
 	private CustomerEntity customerEntity;
 
@@ -40,22 +40,13 @@ public class UserActivityEntity {
 		this.activityId = activityId;
 	}
 
-	@Column(name = "login_time")
-	public Date getLoginTime() {
-		return loginTime;
+	@Column(name = "activity_time")
+	public Date getActivityTime() {
+		return activityTime;
 	}
 
-	public void setLoginTime(Date loginTime) {
-		this.loginTime = loginTime;
-	}
-
-	@Column(name = "logout_time")
-	public Date getLogoutTime() {
-		return logoutTime;
-	}
-
-	public void setLogoutTime(Date logoutTime) {
-		this.logoutTime = logoutTime;
+	public void setActivityTime(Date activityTime) {
+		this.activityTime = activityTime;
 	}
 
 	@Column(name = "activity_type")

@@ -1,6 +1,8 @@
 package com.olms.avalons.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.olms.avalons.model.LoanOffers;
+import com.olms.avalons.model.LoanOffer;
+import com.olms.avalons.model.LoanType;
 import com.olms.avalons.service.LoanOffersService;
+import com.olms.avalons.service.LoanTypeService;
 
 /**
  * Loan offer controller.
@@ -31,12 +35,15 @@ public class LoanOffersController {
 	@Autowired
 	private LoanOffersService offerService;
 
+	@Autowired
+	private LoanTypeService loanTypeService;
+
 	@GetMapping("display")
 	public ModelAndView showLoanOffers(final HttpServletRequest request,
-			@ModelAttribute("loanOffers") LoanOffers loanOffers) {
+			@ModelAttribute("loanOffers") LoanOffer loanOffers) {
 
 		final ModelAndView modelAndView = new ModelAndView("loan-offers-list");
-		final List<LoanOffers> offers = offerService.getLoanOffers();
+		final List<LoanOffer> offers = offerService.getLoanOffers();
 
 		modelAndView.addObject("offers", offers);
 
@@ -44,9 +51,23 @@ public class LoanOffersController {
 	}
 
 	@GetMapping("save")
-	public ModelAndView save(final HttpServletRequest request, @ModelAttribute("loanOffers") LoanOffers loanOffers) {
+	public ModelAndView save(final HttpServletRequest request, @ModelAttribute("loanOffers") LoanOffer loanOffers) {
 
-		return new ModelAndView("loan-offers-reg");
+		final ModelAndView modelAndView = new ModelAndView("loan-offers-reg");
+
+		final List<LoanType> types = loanTypeService.getLoanTypes();
+		modelAndView.addObject("loanTypes", prepareLoanTypes(types));
+		return modelAndView;
+	}
+
+	Map<Long, String> prepareLoanTypes(final List<LoanType> loanTypes) {
+
+		final Map<Long, String> types = new LinkedHashMap<Long, String>();
+		for (LoanType type : loanTypes) {
+			types.put(type.getTypeId(), type.getLoanType());
+		}
+
+		return types;
 	}
 
 	@PostMapping("get-loan-offer")
@@ -55,7 +76,7 @@ public class LoanOffersController {
 
 		System.out.println(loanOfferId);
 
-		final LoanOffers loanOffer = offerService.findById(loanOfferId);
+		final LoanOffer loanOffer = offerService.findById(loanOfferId);
 
 		final ModelMap modelMap = new ModelMap();
 		modelMap.addAttribute("loanOffer", loanOffer);
@@ -77,7 +98,7 @@ public class LoanOffersController {
 
 	@PostMapping("update-loan-offer")
 	@ResponseBody
-	public ModelMap updateLoanOffer(final HttpServletRequest request, @RequestBody LoanOffers loanOffers) {
+	public ModelMap updateLoanOffer(final HttpServletRequest request, @RequestBody LoanOffer loanOffers) {
 
 		offerService.updateLoanOffers(loanOffers);
 
@@ -87,11 +108,13 @@ public class LoanOffersController {
 	}
 
 	@PostMapping("submit")
-	public ModelAndView submit(final HttpServletRequest request, @ModelAttribute("loanOffers") LoanOffers loanOffers) {
+	public ModelAndView submit(final HttpServletRequest request, @ModelAttribute("loanOffers") LoanOffer loanOffers) {
 
-		final ModelAndView modelAndView = new ModelAndView("loan-offers-reg");
+		final ModelAndView modelAndView = new ModelAndView("loan-offers-reg", "loanOffers", new LoanOffer());
 
 		offerService.saveLoanOffer(loanOffers);
+		final List<LoanType> types = loanTypeService.getLoanTypes();
+		modelAndView.addObject("loanTypes", prepareLoanTypes(types));
 
 		modelAndView.addObject("saveMessage", "Loan Offer Saved Successfully..");
 

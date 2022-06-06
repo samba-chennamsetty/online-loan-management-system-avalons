@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -26,11 +27,16 @@ public class LoanInformationEntity {
 	// Loan approved date.
 	private Date loanDate;
 	// loan due date.
-	private Date loanDue;
-	private Integer paymentRange;
+	private Date loanDueDate;
 
-	private CustomerEntity customer;
-	private LoanOffersEntity offersEntity;
+	// Many to one
+	// Many loans info's to one customer or One customer can have many loans.
+	private CustomerEntity customerEntity;
+
+	// One to one
+	// One loan info to one loan request or one loan request can have one
+	// loan info.
+	private LoanRequestsEntity loanRequestEntity;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,42 +58,32 @@ public class LoanInformationEntity {
 		this.loanDate = loanDate;
 	}
 
-	@Column(name = "loan_due")
-	public Date getLoanDue() {
-		return loanDue;
+	@Column(name = "loan_due_date")
+	public Date getLoanDueDate() {
+		return loanDueDate;
 	}
 
-	public void setLoanDue(Date loanDue) {
-		this.loanDue = loanDue;
-	}
-
-	@Column(name = "payment_range")
-	public Integer getPaymentRange() {
-		return paymentRange;
-	}
-
-	public void setPaymentRange(Integer paymentRange) {
-		this.paymentRange = paymentRange;
+	public void setLoanDueDate(Date loanDueDate) {
+		this.loanDueDate = loanDueDate;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "customer_id")
-	public CustomerEntity getCustomer() {
-		return customer;
+	public CustomerEntity getCustomerEntity() {
+		return customerEntity;
 	}
 
-	public void setCustomer(CustomerEntity customer) {
-		this.customer = customer;
+	public void setCustomerEntity(CustomerEntity customerEntity) {
+		this.customerEntity = customerEntity;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "loan_id")
-	public LoanOffersEntity getOffersEntity() {
-		return offersEntity;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "request_id")
+	public LoanRequestsEntity getLoanRequestEntity() {
+		return loanRequestEntity;
 	}
 
-	public void setOffersEntity(LoanOffersEntity offersEntity) {
-		this.offersEntity = offersEntity;
+	public void setLoanRequestEntity(LoanRequestsEntity loanRequestEntity) {
+		this.loanRequestEntity = loanRequestEntity;
 	}
-
 }

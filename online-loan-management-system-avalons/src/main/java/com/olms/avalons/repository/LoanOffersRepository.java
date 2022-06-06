@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.olms.avalons.entity.LoanOffersEntity;
-import com.olms.avalons.model.LoanOffers;
+import com.olms.avalons.model.LoanOffer;
 
 /**
  * Loan offers repository
@@ -24,8 +24,8 @@ import com.olms.avalons.model.LoanOffers;
 public interface LoanOffersRepository extends JpaRepository<LoanOffersEntity, Long> {
 
 	@Modifying(clearAutomatically = true)
-	@Query(value = "INSERT INTO loan_offers (amount, interest, loan_name, loan_range) values (:#{#loanOffer.amount}, :#{#loanOffer.interest}, :#{#loanOffer.loanName}, :#{#loanOffer.loanRange})", nativeQuery = true)
-	void saveloanOffer(@Param("loanOffer") final LoanOffers loanOffer);
+	@Query(value = "INSERT INTO loan_offers (loan_name, loan_range, starting_date, ending_date, status, type_id, interest) values (:#{#loanOffer.loanName}, :#{#loanOffer.loanRange}, :#{#loanOffer.startingDate}, :#{#loanOffer.endingDate}, 'A', :#{#loanOffer.loanTypeId},:#{#loanOffer.interest})", nativeQuery = true)
+	void saveloanOffer(@Param("loanOffer") final LoanOffer loanOffer);
 
 	@Query(value = "SELECT LAST_INSERT_ID()", nativeQuery = true)
 	Long findLastInsertedId();
@@ -33,14 +33,14 @@ public interface LoanOffersRepository extends JpaRepository<LoanOffersEntity, Lo
 	@Query(value = "SELECT * FROM loan_offers;", nativeQuery = true)
 	List<LoanOffersEntity> findAllLoanOffers();
 
-	@Query(value = "SELECT * FROM loan_offers lo WHERE lo.loan_id = :id", nativeQuery = true)
+	@Query(value = "SELECT * FROM loan_offers lo WHERE lo.offer_id = :id", nativeQuery = true)
 	LoanOffersEntity findByLoanId(final Long id);
 
 	@Modifying
-	@Query(value = "DELETE FROM loan.loan_offers lo WHERE lo.loan_id = :id", nativeQuery = true)
+	@Query(value = "DELETE FROM loan.loan_offers lo WHERE lo.offer_id = :id", nativeQuery = true)
 	void deleteById(final Long id);
 
-	@Modifying
-	@Query(value = "UPDATE loan_offers lo SET lo.amount = :#{#loanOffer.amount}, lo.interest = :#{#loanOffer.interest}, lo.loan_name = :#{#loanOffer.loanName}, lo.loan_range = :#{#loanOffer.loanRange} WHERE lo.loan_id = :#{#loanOffer.loanId}", nativeQuery = true)
-	void updateLoanOffer(final LoanOffers loanOffer);
+	@Modifying(clearAutomatically = true)
+	@Query(value = "UPDATE loan_offers lo SET lo.loan_range = :#{#loanOffer.loanRange}, lo.interest = :#{#loanOffer.interest}, lo.loan_name = :#{#loanOffer.loanName}, lo.starting_date = :#{#loanOffer.startingDate},lo.ending_date = :#{#loanOffer.endingDate} WHERE lo.offer_id = :#{#loanOffer.offerId}", nativeQuery = true)
+	void updateLoanOffer(@Param("loanOffer") final LoanOffer loanOffer);
 }

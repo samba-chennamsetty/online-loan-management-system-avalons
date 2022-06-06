@@ -1,5 +1,6 @@
 package com.olms.avalons.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -19,15 +20,16 @@ import javax.persistence.Table;
  * @since Apr 18, 2022
  */
 @Entity
-@Table(name = "payment_information")
+@Table(name = "payment_info")
 public class PaymentInformationEntity {
 
 	private Long paymentId;
-	private Double paymentAmount;
+	private BigDecimal paymentAmount;
+	private String paymentType;
 	private Date paymentDate;
+	private String status;
 
-	private LoanInformationEntity infoEntity;
-	private CustomerEntity customer;
+	private EmiEntity emiEntity;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,13 +42,22 @@ public class PaymentInformationEntity {
 		this.paymentId = paymentId;
 	}
 
-	@Column(name = "payment_amount")
-	public Double getPaymentAmount() {
+	@Column(name = "payment_amount", precision = 9, scale = 2)
+	public BigDecimal getPaymentAmount() {
 		return paymentAmount;
 	}
 
-	public void setPaymentAmount(Double paymentAmount) {
+	public void setPaymentAmount(BigDecimal paymentAmount) {
 		this.paymentAmount = paymentAmount;
+	}
+
+	public void setPaymentType(String paymentType) {
+		this.paymentType = paymentType;
+	}
+
+	@Column(name = "payment_type")
+	public String getPaymentType() {
+		return paymentType;
 	}
 
 	@Column(name = "payment_date")
@@ -58,23 +69,22 @@ public class PaymentInformationEntity {
 		this.paymentDate = paymentDate;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "info_id")
-	public LoanInformationEntity getInfoEntity() {
-		return infoEntity;
+	@Column(name = "status")
+	public String getStatus() {
+		return status;
 	}
 
-	public void setInfoEntity(LoanInformationEntity infoEntity) {
-		this.infoEntity = infoEntity;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "customer_id")
-	public CustomerEntity getCustomer() {
-		return customer;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "emi_id", nullable = false)
+	public EmiEntity getEmiEntity() {
+		return emiEntity;
 	}
 
-	public void setCustomer(CustomerEntity customer) {
-		this.customer = customer;
+	public void setEmiEntity(EmiEntity emiEntity) {
+		this.emiEntity = emiEntity;
 	}
 }

@@ -77,7 +77,7 @@
 <body>
 	<div class="wrapper">
 		<!-- Sidebar  -->
-		<jsp:include page="admin-side-bar.jsp" />
+		<jsp:include page="employee-side-bar.jsp" />
 		<!-- Page Content  -->
 		<div id="content">
 

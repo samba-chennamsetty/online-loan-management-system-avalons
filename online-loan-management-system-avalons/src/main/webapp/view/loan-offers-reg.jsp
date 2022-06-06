@@ -76,7 +76,7 @@
 <body>
 	<div class="wrapper">
 		<!-- Sidebar  -->
-		<jsp:include page="admin-side-bar.jsp" />
+		<jsp:include page="employee-side-bar.jsp" />
 		<!-- Page Content  -->
 		<div id="content">
 
@@ -118,24 +118,31 @@
 
 									<div class="form-outline mb-4">
 										<form:input type="number" tabindex="1" class="form-control"
-											path="amount" placeholder="amount" required="required" />
+											path="loanRange" placeholder="amount" required="required" />
 									</div>
 
 									<div class="form-outline mb-4">
-										<form:input type="text" tabindex="1" class="form-control"
-											path="loanRange" placeholder="Loan Range" required="required" />
+										<form:input type="number" tabindex="1" class="form-control"
+											path="interest" placeholder="Interest" required="required"/>
 									</div>
 
 									<div class="form-outline mb-4">
-										<form:input type="number" tabindex="1" step=".01"
-											class="form-control" path="interest" placeholder="Interest"
-											required="required" />
+										<form:select class="form-control" path="loanTypeId"
+											items="${loanTypes}" />
+									</div>
+
+									<div class="form-outline mb-4">
+										<form:input type="Date" tabindex="1" class="form-control"
+											path="startingDate" placeholder="Starting Date" />
+									</div>
+									<div class="form-outline mb-4">
+										<form:input type="Date" tabindex="1" class="form-control"
+											path="endingDate" placeholder="Ending Date" />
 									</div>
 
 									<div class="form-group">
 										<button type="submit" class="btn btn-success btn-lg btn-block">Save</button>
 									</div>
-
 								</form:form>
 							</div>
 						</div>

@@ -2,7 +2,7 @@ package com.olms.avalons.service;
 
 import java.util.List;
 
-import com.olms.avalons.model.LoanOffers;
+import com.olms.avalons.model.LoanOffer;
 
 /**
  * Loan offer service.
@@ -12,13 +12,13 @@ import com.olms.avalons.model.LoanOffers;
  */
 public interface LoanOffersService {
 
-	void saveLoanOffer(final LoanOffers offer);
+	void saveLoanOffer(final LoanOffer offer);
 
-	List<LoanOffers> getLoanOffers();
+	List<LoanOffer> getLoanOffers();
 
-	void updateLoanOffers(final LoanOffers offer);
+	void updateLoanOffers(final LoanOffer offer);
 
-	LoanOffers findById(final Long loanOfferId);
+	LoanOffer findById(final Long loanOfferId);
 
 	void deleteById(final Long id);
 }

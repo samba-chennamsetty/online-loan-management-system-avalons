@@ -31,7 +31,7 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link">Admin Login</a>
+								<a href="#" class="active" id="login-form-link">Employee Login</a>
 							</div>
 						</div>
 						<hr>
@@ -39,9 +39,12 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form:form method="post" action="/admin-login/submit"
-									commandName="adminLogin" modelAttribute="adminLogin"
+								<form:form method="post" action="/employee-login/submit"
+									commandName="employeeLogin" modelAttribute="employeeLogin"
 									style="display: block;">
+									<div class="form-group">
+										<form:select path="branchId" items="${branches}" />
+									</div>
 									<div class="form-group">
 										<form:input type="text" path="emailId" tabindex="1"
 											class="form-control" placeholder="Admin Id" value="" />

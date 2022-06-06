@@ -72,12 +72,12 @@
 											path="firstName" placeholder="First Name" required="required" />
 									</div>
 									<div class="form-group">
-										<form:input type="text" tabindex="1" class="form-control" path="lastName"
-											placeholder="Last Name" required="required" />
+										<form:input type="text" tabindex="1" class="form-control"
+											path="lastName" placeholder="Last Name" required="required" />
 									</div>
 									<div class="form-group">
-										<form:input type="email" tabindex="1" class="form-control" path="emailId"
-											placeholder="Email" required="required" />
+										<form:input type="email" tabindex="1" class="form-control"
+											path="emailId" placeholder="Email" required="required" />
 									</div>
 									<div class="form-group">
 										<form:input type="text" tabindex="1" class="form-control"
@@ -85,21 +85,34 @@
 											required="required" />
 									</div>
 									<div class="form-group">
-										<form:input type="text" tabindex="1" class="form-control" path="address"
-											placeholder="Address" required="required" />
+										<form:input type="text" tabindex="1" class="form-control"
+											path="address" placeholder="Address" required="required" />
 									</div>
 									<div class="form-group">
-										<form:input type="Date" tabindex="1" class="form-control" path="dob"
-											placeholder="Date of birth" />
+										<form:input type="Date" tabindex="1" class="form-control"
+											path="dob" placeholder="Date of birth" />
 									</div>
 									<div class="form-group" tabindex="1">
-										<form:radiobutton path="gender" value="M" label="Male" class="form-control-radio"/>
-										<form:radiobutton path="gender" value="F" label="Female" class="" />
+										<form:radiobutton path="gender" value="M" label="Male"
+											class="form-control-radio" />
+										<form:radiobutton path="gender" value="F" label="Female"
+											class="" />
 
 									</div>
 									<div class="form-group">
-										<form:input type="password" path="password" class="form-control" tabindex="1"
-											placeholder="Password" required="required"/>
+										<form:input type="password" path="password"
+											class="form-control" tabindex="1" placeholder="Password"
+											required="required" />
+									</div>
+
+									<div class="form-group">
+										<form:input type="text" path="ssnNumber" class="form-control"
+											tabindex="1" placeholder="Social Number" required="required" />
+									</div>
+
+									<div class="form-group">
+										<form:input type="text" path="occupation" class="form-control"
+											tabindex="1" placeholder="Occupation" required="required" />
 									</div>
 									<div class="form-group">
 										<button type="submit" class="btn btn-success btn-lg btn-block">Register

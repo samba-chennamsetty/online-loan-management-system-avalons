@@ -1,28 +1,21 @@
 package com.olms.avalons.model;
 
 /**
- * Admin model.
+ * Employee model.
  *
  * @author Samba Chennamsetty
  * @since Apr 24, 2022
  */
-public class Admin {
+public class Employee {
 
-	private Long adminId;
+	private Long empId;
 	private String firstName;
 	private String lastName;
 	private String emailId;
 	private String mobileNumber;
 	private String address;
 	private String password;
-
-	public Long getAdminId() {
-		return adminId;
-	}
-
-	public void setAdminId(Long adminId) {
-		this.adminId = adminId;
-	}
+	private Long branchId;
 
 	public String getFirstName() {
 		return firstName;
@@ -72,4 +65,19 @@ public class Admin {
 		this.password = password;
 	}
 
+	public Long getBranchId() {
+		return branchId;
+	}
+
+	public void setBranchId(Long branchId) {
+		this.branchId = branchId;
+	}
+
+	public Long getEmpId() {
+		return empId;
+	}
+
+	public void setEmpId(Long empId) {
+		this.empId = empId;
+	}
 }

@@ -167,7 +167,7 @@ table.table .avatar {
 <body>
 	<div class="wrapper">
 		<!-- Sidebar  -->
-		<jsp:include page="admin-side-bar.jsp" />
+		<jsp:include page="employee-side-bar.jsp" />
 		<!-- Page Content  -->
 		<div id="content">
 
@@ -202,7 +202,8 @@ table.table .avatar {
 								<tr>
 									<th>Loan Name</th>
 									<th>Amount</th>
-									<th>Loan Range</th>
+									<th>Starting Date</th>
+									<th>Ending Date</th>
 									<th>Interest</th>
 								</tr>
 							</thead>
@@ -211,13 +212,14 @@ table.table .avatar {
 
 									<tr>
 										<td>${offer.loanName}</td>
-										<td>${offer.amount}</td>
 										<td>${offer.loanRange}</td>
-										<td>${offer.interest}</td>
-										<td><a onclick="editLoanOffer(${offer.loanId})"
+										<td>${offer.displayStartingDate}</td>
+										<td>${offer.displayEndingDate}</td>
+										<td>${offer.interest}%</td>
+										<td><a onclick="editLoanOffer(${offer.offerId})"
 											class="edit" data-toggle="modal"><i
 												class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-											<a onclick="deleteLoanOffer(${offer.loanId})" class="delete"
+											<a onclick="deleteLoanOffer(${offer.offerId})" class="delete"
 											data-toggle="modal"><i class="material-icons"
 												data-toggle="tooltip" title="Delete">&#xE872;</i></a></td>
 									</tr>
@@ -232,6 +234,7 @@ table.table .avatar {
 			</div>
 		</div>
 	</div>
+
 
 	<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -255,12 +258,16 @@ table.table .avatar {
 							id="loanAmount" name="loanAmount" value="" class="form-control">
 					</div>
 					<div class="md-form mb-3">
-						<label for="loanRange">Loan Range</label> <input type="text"
-							id="loanRange" name="loanRange" value="" class="form-control">
-					</div>
-					<div class="md-form mb-3">
 						<label for="interest">Interest</label> <input type="number"
 							id="interest" name="interest" value="" class="form-control">
+					</div>
+					<div class="md-form mb-3">
+						<label for="startingDate">Starting Date</label> <input type="Date"
+							id="startingDate" name="startingDate" value="" class="form-control">
+					</div>
+					<div class="md-form mb-3">
+						<label for="startingDate">Ending Date</label> <input type="Date"
+							id="endingDate" name="endingDate" value="" class="form-control">
 					</div>
 					<input type="hidden" id="loanOfferId" name="loanOfferId" value="">
 				</div>
@@ -272,6 +279,7 @@ table.table .avatar {
 			</div>
 		</div>
 	</div>
+
 </body>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -303,10 +311,11 @@ table.table .avatar {
 	        },
 	        success: function (response) {
 	        	$("#loanName").val(response.loanOffer.loanName);
-	        	$("#loanAmount").val(response.loanOffer.amount);
-	        	$("#loanRange").val(response.loanOffer.loanRange);
+	        	$("#loanAmount").val(response.loanOffer.loanRange);
+	        	$("#startingDate").val(response.loanOffer.startingDate);
+	        	$("#endingDate").val(response.loanOffer.endingDate);
 	        	$("#interest").val(response.loanOffer.interest);
-	        	$("#loanOfferId").val(response.loanOffer.loanId);
+	        	$("#loanOfferId").val(response.loanOffer.offerId);
 	        	$('#modalLoginForm').modal('show');
 	        }
 	    });
@@ -320,10 +329,11 @@ table.table .avatar {
 	        contentType: 'application/json',
 	        data: JSON.stringify({
 	        	loanName: $("#loanName").val(),
-	        	amount: $("#loanAmount").val(),
-	        	loanRange: $("#loanRange").val(),
+	        	loanRange: $("#loanAmount").val(),
 	        	interest: $("#interest").val(),
-	        	loanId: $("#loanOfferId").val(),
+	        	offerId: $("#loanOfferId").val(),
+	        	startingDate: $("#startingDate").val(),
+	        	endingDate: $("#endingDate").val(),
 	        }),
 	        error: function () {
 	        },

@@ -2,6 +2,7 @@ package com.olms.avalons.controller;
 
 import static com.olms.avalons.utils.SessionUtils.CUSTOMER_LOGIN;
 import static com.olms.avalons.utils.SessionUtils.isCustomerLoggedIn;
+import static org.springframework.beans.BeanUtils.copyProperties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -73,7 +74,7 @@ public class CustomerLoginController {
 		System.out.println("register Came");
 
 		final Customer customer = new Customer();
-		org.springframework.beans.BeanUtils.copyProperties(customerLogin, customer);
+		copyProperties(customerLogin, customer);
 
 		customerService.saveCustomer(customer);
 

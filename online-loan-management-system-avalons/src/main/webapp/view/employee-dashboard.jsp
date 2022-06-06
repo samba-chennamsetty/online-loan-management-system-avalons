@@ -35,7 +35,7 @@
 <body>
 	<div class="wrapper">
 		<!-- Sidebar  -->
-		<jsp:include page="admin-side-bar.jsp" />
+		<jsp:include page="employee-side-bar.jsp" />
 		<!-- Page Content  -->
 		<div id="content">
 
@@ -56,7 +56,7 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="nav navbar-nav ml-auto">
 							<li class="nav-item"><form:form method="get"
-									action="/customer/logout">
+									action="/employee-login/logout">
 									<input type="submit" value="Logout" />
 								</form:form></li>
 						</ul>

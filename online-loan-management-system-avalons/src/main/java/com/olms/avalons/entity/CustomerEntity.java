@@ -28,6 +28,8 @@ public class CustomerEntity {
 	private Date dob;
 	private String gender;
 	private String password;
+	private String occupation;
+	private String ssnNumber;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,7 +60,7 @@ public class CustomerEntity {
 		this.lastName = lastName;
 	}
 
-	@Column(name = "email_id")
+	@Column(name = "email_id", length = 50, nullable = false, unique = true)
 	public String getEmailId() {
 		return emailId;
 	}
@@ -67,7 +69,7 @@ public class CustomerEntity {
 		this.emailId = emailId;
 	}
 
-	@Column(name = "contact_num")
+	@Column(name = "contact_num", length = 11, nullable = false, unique = true)
 	public String getMobileNumber() {
 		return mobileNumber;
 	}
@@ -110,5 +112,23 @@ public class CustomerEntity {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Column(name = "occupation")
+	public String getOccupation() {
+		return occupation;
+	}
+
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
+	}
+
+	@Column(name = "ssn_number", length = 11, nullable = false, unique = true)
+	public String getSsnNumber() {
+		return ssnNumber;
+	}
+
+	public void setSsnNumber(String ssnNumber) {
+		this.ssnNumber = ssnNumber;
 	}
 }
