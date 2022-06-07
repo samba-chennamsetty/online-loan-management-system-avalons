@@ -3,6 +3,8 @@
  */
 package com.olms.avalons.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -27,4 +29,7 @@ public interface EmiRepository extends JpaRepository<EmiEntity, Long> {
 
 	@Query(value = "SELECT LAST_INSERT_ID()", nativeQuery = true)
 	Long findLastInsertedId();
+
+	@Query(value = "SELECT * FROM emi em WHERE em.info_id = :infoId", nativeQuery = true)
+	List<EmiEntity> findEmisByLoanInfoId(@Param("infoId") final Long infoId);
 }

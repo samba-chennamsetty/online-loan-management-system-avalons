@@ -3,6 +3,8 @@
  */
 package com.olms.avalons.service;
 
+import java.util.List;
+
 import com.olms.avalons.model.LoanInformation;
 
 /**
@@ -17,7 +19,7 @@ public interface LoanInformationService {
 
 	LoanInformation getLoanInformation(final Long infoId);
 
-	LoanInformation getLoanInformationByCustomerId(final Long customerId);
-	
+	List<LoanInformation> getLoanInformationByCustomerId(final Long customerId);
+
 	Long getLastInsertedId();
 }

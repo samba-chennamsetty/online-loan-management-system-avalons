@@ -8,10 +8,11 @@
 		<li class="active"><a href="#homeSubmenu" data-toggle="collapse"
 			aria-expanded="false" class="dropdown-toggle">Loan Offers</a>
 			<ul class="collapse list-unstyled" id="homeSubmenu">
-				<li><a href="/loan-transaction/save">Apply loan</a></li>
+				<li><a href="/loan-request/save">Apply loan</a></li>
 				<!-- <li><a href="/loan-offers/display">Check Loan Offers</a></li> -->
 			</ul></li>
 		<li><a href="/loan-request/save">Apply loan</a></a></li>
+		<li><a href="/loan-information/loans">Loans</a></a></li>
 		<li><a href="#pageSubmenu" data-toggle="collapse"
 			aria-expanded="false" class="dropdown-toggle">Pages</a>
 			<ul class="collapse list-unstyled" id="pageSubmenu">

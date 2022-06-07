@@ -61,6 +61,21 @@ public class DateUtils {
 	}
 
 	/**
+	 * Generates timestamp from the given date.
+	 *
+	 * @param date date.
+	 * @return timestamp.
+	 */
+	public static Timestamp toTimestamp(final java.util.Date date) {
+
+		if (date == null) {
+			return null;
+		}
+
+		return new Timestamp(date.getTime());
+	}
+
+	/**
 	 * Gets the simple date format for the display date3 format.
 	 *
 	 * @return simple date format.

@@ -3,6 +3,10 @@
  */
 package com.olms.avalons.model;
 
+import static com.olms.avalons.utils.DateUtils.format;
+import static com.olms.avalons.utils.DateUtils.getDisplayDate3;
+import static com.olms.avalons.utils.DateUtils.toTimestamp;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -23,6 +27,7 @@ public class Emi {
 
 	private Long loanInfoId;
 	private Long customerId;
+	private boolean paymentOption;
 
 	public Long getEmiId() {
 		return emiId;
@@ -86,5 +91,36 @@ public class Emi {
 
 	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
+	}
+
+	public String getEmiStatus() {
+
+		if (this.status.equals("P")) {
+			return "PENDING";
+		}
+
+		if (this.status.equals("C")) {
+			return "COMPLETED";
+		}
+
+		return null;
+
+	}
+
+	public String getDisplayPaymentDate() {
+
+		if (paymentDate == null) {
+			return "";
+		}
+
+		return format(toTimestamp(paymentDate), getDisplayDate3());
+	}
+
+	public boolean isPaymentOption() {
+		return paymentOption;
+	}
+
+	public void setPaymentOption(boolean paymentOption) {
+		this.paymentOption = paymentOption;
 	}
 }
