@@ -17,7 +17,7 @@
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="../static/css/sideBar.css" />
+<link rel="stylesheet" href="../static/css/employeeSideBar.css" />
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -180,7 +180,7 @@ table.table .avatar {
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="nav navbar-nav ml-auto">
 							<li class="nav-item"><form:form method="get"
-									action="/customer/logout">
+									action="/employee-login/logout">
 									<input
 										type="submit"
 										value="Logout (<c:out value="${sessionScope.EMPLOYEE_LOGIN.firstName}"/>)" />

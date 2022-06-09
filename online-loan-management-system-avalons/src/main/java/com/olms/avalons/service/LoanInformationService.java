@@ -18,6 +18,8 @@ public interface LoanInformationService {
 	void saveLoanInfo(final LoanInformation loanInfo);
 
 	LoanInformation getLoanInformation(final Long infoId);
+	
+	LoanInformation getLoanInformationByRequestId(final Long requestId);
 
 	List<LoanInformation> getLoanInformationByCustomerId(final Long customerId);
 

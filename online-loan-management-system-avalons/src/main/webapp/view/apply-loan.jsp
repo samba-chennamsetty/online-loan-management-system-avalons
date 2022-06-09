@@ -74,7 +74,7 @@
 								<h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Apply Loan</h3>
 
 								<form:form class="px-md-2" id="register-form"
-									action="/loan-transaction/submit" method="post"
+									action="/loan-request/submit" method="post"
 									commandName="loanRequest" modelAttribute="loanRequest">
 
 									<div class="form-outline mb-4">

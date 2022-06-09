@@ -204,26 +204,52 @@ table.table .avatar {
 									<th>Amount</th>
 									<th>EMI Months</th>
 									<th>Interest</th>
+									<th>Status</th>
 									<th>Date</th>
 									<th>Due Date</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="info" items="${infos}">
-									<tr onclick="getLoanInfo(${info.infoId})">
-										<td>${info.loanName}</td>
-										<td>${info.amount}$</td>
-										<td>${info.emiMonths}</td>
-										<td>${info.interest}</td>
-										<td>${info.displayLoanDate}</td>
-										<td>${info.displayLoanDueDate}</td>
-										<td><form style="display: none"
-												action="/loan-information/emi" method="POST"
-												id="form${info.infoId}">
-												<input type="hidden" id="${info.infoId}"
-													name="${info.infoId}" value="" />
-											</form></td>
-									</tr>
+
+									<c:choose>
+										<c:when test="${info.status == 'APPROVED'}">
+											<tr onclick="getLoanInfo(${info.infoId})">
+												<td>${info.loanName}</td>
+												<td>${info.amount}$</td>
+												<td>${info.emiMonths}</td>
+												<td>${info.interest}</td>
+												<td>${info.status}</td>
+												<td>${info.displayLoanDate}</td>
+												<td>${info.displayLoanDueDate}</td>
+												<td><form style="display: none"
+														action="/loan-information/emi" method="POST"
+														id="form${info.infoId}">
+														<input type="hidden" id="${info.infoId}"
+															name="${info.infoId}" value="" />
+													</form></td>
+											</tr>
+										</c:when>
+										<c:otherwise>
+											<tr>
+												<td>${info.loanName}</td>
+												<td>${info.amount}$</td>
+												<td>${info.emiMonths}</td>
+												<td>${info.interest}</td>
+												<td>${info.status}</td>
+												<td>${info.displayLoanDate}</td>
+												<td>${info.displayLoanDueDate}</td>
+												<td><form style="display: none"
+														action="/loan-information/emi" method="POST"
+														id="form${info.infoId}">
+														<input type="hidden" id="${info.infoId}"
+															name="${info.infoId}" value="" />
+													</form></td>
+											</tr>
+										</c:otherwise>
+									</c:choose>
+
+
 								</c:forEach>
 							</tbody>
 						</table>

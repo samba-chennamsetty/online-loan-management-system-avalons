@@ -1,3 +1,4 @@
+
 package com.olms.avalons.entity;
 
 import java.math.BigDecimal;

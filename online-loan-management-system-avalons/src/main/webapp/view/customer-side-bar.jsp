@@ -10,7 +10,7 @@
 					value="${sessionScope.CUSTOMER_LOGIN.firstName} - ${sessionScope.CUSTOMER_LOGIN.lastName}" /></b>
 		</p>
 		<li><a href="/loan-request/save">Apply loan</a></li>
-		<li><a href="/loan-information/loans">Loans</a></li>
+		<li><a href="/loan-request/by-customer-id">Loans</a></li>
 		<li><a href="/customer-dashboard/profile">Settings</a></li>
 		<li><a href="/user-activity/cust-activity">My Activity</a></li>
 		<!-- <li class="active"><a href="#homeSubmenu" data-toggle="collapse"

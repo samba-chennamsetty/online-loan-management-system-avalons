@@ -17,7 +17,7 @@
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="../static/css/sideBar.css" />
+<link rel="stylesheet" href="../static/css/employeeSideBar.css" />
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link

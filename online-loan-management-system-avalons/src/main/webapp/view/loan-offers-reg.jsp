@@ -19,7 +19,7 @@
 	integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
 	crossorigin="anonymous">
 <!-- Our Custom CSS -->
-<link rel="stylesheet" href="../static/css/sideBar.css" />
+<link rel="stylesheet" href="../static/css/employeeSideBar.css" />
 
 <!-- Font Awesome JS -->
 <script defer
@@ -104,7 +104,7 @@
 						<div class="card rounded-3">
 
 							<div class="card-body p-4">
-								<h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Save Loan
+								<h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Create Loan
 									Offer</h3>
 
 								<form:form class="px-md-2" id="register-form"

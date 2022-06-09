@@ -25,6 +25,7 @@ import com.olms.avalons.constants.Constants;
 import com.olms.avalons.model.Branch;
 import com.olms.avalons.model.Customer;
 import com.olms.avalons.model.Employee;
+import com.olms.avalons.model.LoanInformation;
 import com.olms.avalons.model.LoanOffer;
 import com.olms.avalons.model.LoanRequest;
 import com.olms.avalons.service.BranchService;
@@ -125,6 +126,19 @@ public class LoanRequestController {
 		final List<LoanRequest> requests = loanRequestService.getAllLoanRequests(employee.getEmpId(), PROCESSING);
 
 		modelAndView.addObject("requests", requests);
+
+		return modelAndView;
+	}
+
+	@GetMapping("by-customer-id")
+	public ModelAndView getByCustomerId(final HttpServletRequest request) {
+
+		final Customer customer = SessionUtils.getCustomerInfo(request);
+
+		final ModelAndView modelAndView = new ModelAndView("loans-info");
+		final List<LoanInformation> infos = loanRequestService.getAllLoanRequestsByCustomerId(customer.getCustomerId());
+
+		modelAndView.addObject("infos", infos);
 
 		return modelAndView;
 	}

@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Customer Login</title>
+<title>Online Loan Management System</title>
 <meta name="description" content="A demo of a card payment on Stripe" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link
@@ -188,6 +188,8 @@ a {
 	
 	
 	
+	
+	
 	:
 	
 	
@@ -206,7 +208,9 @@ a {
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -260,8 +264,12 @@ a {
 	
 	
 	
+	
+	
 	!
 	important
+	
+	
 	
 	
 	
@@ -333,6 +341,8 @@ a {
 	
 	
 	
+	
+	
 	:
 	
 	
@@ -351,7 +361,9 @@ a {
 	
 	
 	
+	
 	 
+	
 	
 	
 	
@@ -405,8 +417,12 @@ a {
 	
 	
 	
+	
+	
 	!
 	important
+	
+	
 	
 	
 	
@@ -478,8 +494,8 @@ a {
 		</div>
 		<div class="bg-blue py-4">
 			<div class="">
-				<h5 class="text-center">A project By Avalons Team..! (Samba
-					Chennamsetty, Arif Pasha, Jagadishwar Reddy, Siva Rama Krishna,
+				<h5 class="text-center">A project By Avalons Team..! (Arif
+					Pasha, Jagadishwar Reddy, Samba Chennamsetty, Siva Rama Krishna,
 					Teja Sri & Vamsi Kiran..)</h5>
 			</div>
 		</div>

@@ -41,6 +41,15 @@ public class LoanInformationServiceImpl implements LoanInformationService {
 	}
 
 	@Override
+	public LoanInformation getLoanInformationByRequestId(final Long requestId) {
+
+		final LoanInformationEntity entity = loanInfoRepo.findloanInfoByRequestId(requestId);
+		final LoanInformation info = new LoanInformation();
+		copyProperties(entity, info);
+		return info;
+	}
+
+	@Override
 	public List<LoanInformation> getLoanInformationByCustomerId(final Long customerId) {
 
 		final List<LoanInformationEntity> entities = loanInfoRepo.findAllloanInfos(customerId);

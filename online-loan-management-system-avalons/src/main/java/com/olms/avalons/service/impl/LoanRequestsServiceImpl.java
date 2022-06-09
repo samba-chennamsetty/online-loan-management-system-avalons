@@ -25,6 +25,7 @@ import com.olms.avalons.repository.LoanRequestsRepository;
 import com.olms.avalons.service.EmiService;
 import com.olms.avalons.service.LoanInformationService;
 import com.olms.avalons.service.LoanRequestsService;
+import com.olms.avalons.service.UserActivityService;
 import com.olms.avalons.utils.DateUtils;
 
 @Service
@@ -41,6 +42,9 @@ public class LoanRequestsServiceImpl implements LoanRequestsService {
 
 	@Autowired
 	private EmiService emiService;
+
+	@Autowired
+	private UserActivityService activityService;
 
 	@Override
 	public void saveLoanRequest(final LoanRequest loanRequest) {
@@ -84,9 +88,18 @@ public class LoanRequestsServiceImpl implements LoanRequestsService {
 	@Override
 	public void processLoanRequest(final Long loanRequestId, final String status) {
 
+		final LoanRequestsEntity entity = requestRepository.findLoanRequestById(loanRequestId);
+
+		if (status.equals(Constants.DECLINED)) {
+			requestRepository.processLoanRequest(loanRequestId, status);
+			activityService.saveUserActivity("LOAN DECLINED", entity.getCustomerEntity().getCustomerId());
+
+			return;
+		}
+
 		requestRepository.processLoanRequest(loanRequestId, status);
 
-		final LoanRequestsEntity entity = requestRepository.findLoanRequestById(loanRequestId);
+		activityService.saveUserActivity("LOAN APPROVED", entity.getCustomerEntity().getCustomerId());
 
 		final Long loanInfoId = saveLoanInfo(entity);
 
@@ -100,13 +113,14 @@ public class LoanRequestsServiceImpl implements LoanRequestsService {
 	 * @param loanInfoId loan info id.
 	 */
 	private void saveEmiDetails(final LoanRequestsEntity entity, final Long loanInfoId) {
-		
-		final Double monthInterest = (entity.getOffersEntity().getInterest().doubleValue() * entity.getAmount().doubleValue()) / 100;
-		final Double totalInterest = monthInterest* entity.getEmiMonths(); 
-		
+
+		final Double monthInterest = (entity.getOffersEntity().getInterest().doubleValue()
+				* entity.getAmount().doubleValue()) / 100;
+		final Double totalInterest = monthInterest * entity.getEmiMonths();
+
 		final Double totalAmount = entity.getAmount().doubleValue() + totalInterest;
-		
-		final Double monthlyAmount = totalAmount  / entity.getEmiMonths();
+
+		final Double monthlyAmount = totalAmount / entity.getEmiMonths();
 		Double balance = totalAmount;
 
 		Calendar now = Calendar.getInstance();
@@ -145,5 +159,46 @@ public class LoanRequestsServiceImpl implements LoanRequestsService {
 		infoService.saveLoanInfo(info);
 
 		return infoService.getLastInsertedId();
+	}
+
+	@Override
+	public List<LoanInformation> getAllLoanRequestsByCustomerId(final Long customerId) {
+
+		final List<LoanRequestsEntity> entities = requestRepository.findLoanRequestByCustomerId(customerId);
+
+		final List<LoanInformation> information = new ArrayList<LoanInformation>();
+
+		for (LoanRequestsEntity entity : entities) {
+
+			final LoanInformation info = new LoanInformation();
+			info.setAmount(entity.getAmount());
+			info.setCustomerId(entity.getCustomerEntity().getCustomerId());
+			info.setEmiMonths(entity.getEmiMonths());
+			info.setInterest(entity.getOffersEntity().getInterest());
+			info.setLoanDate(entity.getLoanRequestedDate());
+			info.setLoanName(entity.getOffersEntity().getLoanName());
+			info.setLoanRequestId(entity.getRequestId());
+
+			if (entity.getStatus().equals(Constants.PROCESSING)) {
+				info.setLoanDueDate(null);
+				info.setStatus("PROCESSING");
+			}
+
+			if (entity.getStatus().equals(Constants.DECLINED)) {
+				info.setLoanDueDate(null);
+				info.setStatus("DECLINED");
+			}
+
+			if (entity.getStatus().equals(Constants.APPROVED)) {
+
+				final LoanInformation info1 = infoService.getLoanInformationByRequestId(entity.getRequestId());
+				info.setLoanDueDate(info1.getLoanDueDate());
+				info.setInfoId(info1.getInfoId());
+				info.setStatus("APPROVED");
+			}
+
+			information.add(info);
+		}
+		return information;
 	}
 }

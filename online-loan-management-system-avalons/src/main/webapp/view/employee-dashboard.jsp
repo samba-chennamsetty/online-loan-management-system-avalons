@@ -69,9 +69,7 @@
 				<h2>
 					Welcome to:
 					<c:out value="${sessionScope.EMPLOYEE_LOGIN.branchName}" />
-					(
-					<c:out value="${sessionScope.EMPLOYEE_LOGIN.branchCode}" />
-					),
+					(<c:out value="${sessionScope.EMPLOYEE_LOGIN.branchCode}" />),
 					<c:out value="${sessionScope.EMPLOYEE_LOGIN.firstName}" /> ...!
 				</h2>
 			</div>

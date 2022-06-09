@@ -49,7 +49,7 @@
 									</div>
 									<div class="form-group">
 										<form:input type="text" path="emailId" tabindex="1"
-											class="form-control" placeholder="Admin Id" value="" />
+											class="form-control" placeholder="Employee Id" value="" />
 									</div>
 									<div class="form-group">
 										<form:input type="password" path="password" tabindex="2"

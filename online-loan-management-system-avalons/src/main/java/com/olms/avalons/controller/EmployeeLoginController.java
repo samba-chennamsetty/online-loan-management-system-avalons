@@ -59,7 +59,7 @@ public class EmployeeLoginController {
 
 		final Map<Long, String> branchess = new LinkedHashMap<Long, String>();
 		for (Branch branch : branches) {
-			final String branchInfo = branch.getBranchCode() + " - " + branch.getName();
+			final String branchInfo =  branch.getName()+ " - " + branch.getBranchCode();
 
 			branchess.put(branch.getBranchId(), branchInfo);
 		}

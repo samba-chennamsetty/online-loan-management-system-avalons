@@ -9,8 +9,8 @@
 			<b><c:out
 					value="${sessionScope.EMPLOYEE_LOGIN.branchName} - ${sessionScope.EMPLOYEE_LOGIN.branchCode}" /></b>
 		</p>
-		<li><a href="/loan-offers/save">Save Loan Offers</a></li>
-		<li><a href="/loan-offers/display">Check Loan Offers</a></li>
+		<li><a href="/loan-offers/save">Create Loan Offers</a></li>
+		<li><a href="/loan-offers/display">View Loan Offers</a></li>
 		<li><a href="/loan-request/requested-list">Requested Loans</a></li>
 		<li><a href="/loan-request/approved-list">Approved Loans</a></li>
 		<li><a href="/loan-request/declined-list">Declined Loans</a></li>

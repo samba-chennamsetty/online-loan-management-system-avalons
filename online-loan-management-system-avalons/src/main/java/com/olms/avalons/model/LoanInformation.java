@@ -27,6 +27,7 @@ public class LoanInformation {
 	private Long emiMonths;
 	private String loanName;
 	private BigDecimal interest;
+	private String status;
 
 	public Long getInfoId() {
 		return infoId;
@@ -100,10 +101,18 @@ public class LoanInformation {
 		this.interest = interest;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public String getDisplayLoanDate() {
 
 		if (loanDate == null) {
-			return "";
+			return "-";
 		}
 
 		return format(toTimestamp(loanDate), getDisplayDate3());
@@ -112,7 +121,7 @@ public class LoanInformation {
 	public String getDisplayLoanDueDate() {
 
 		if (loanDueDate == null) {
-			return "";
+			return "-";
 		}
 
 		return format(toTimestamp(loanDueDate), getDisplayDate3());

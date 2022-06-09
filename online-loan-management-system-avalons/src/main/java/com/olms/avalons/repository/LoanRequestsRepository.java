@@ -37,4 +37,7 @@ public interface LoanRequestsRepository extends JpaRepository<LoanRequestsEntity
 
 	@Query(value = "SELECT * FROM loan_request req WHERE req.request_id = :requestId", nativeQuery = true)
 	LoanRequestsEntity findLoanRequestById(@Param("requestId") final Long requestId);
+	
+	@Query(value = "SELECT * FROM loan_request req WHERE req.customer_id = :customerId", nativeQuery = true)
+	List<LoanRequestsEntity> findLoanRequestByCustomerId(@Param("customerId") final Long customerId);
 }

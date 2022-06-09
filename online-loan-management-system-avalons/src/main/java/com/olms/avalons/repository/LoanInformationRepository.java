@@ -31,7 +31,10 @@ public interface LoanInformationRepository extends JpaRepository<LoanInformation
 
 	@Query(value = "SELECT * FROM loan_information info WHERE info.customer_id = :customerId", nativeQuery = true)
 	List<LoanInformationEntity> findAllloanInfos(@Param("customerId") final Long customerId);
-	
+
+	@Query(value = "SELECT * FROM loan_information info WHERE info.request_id = :requestId", nativeQuery = true)
+	LoanInformationEntity findloanInfoByRequestId(@Param("requestId") final Long requestId);
+
 	@Query(value = "SELECT LAST_INSERT_ID()", nativeQuery = true)
 	Long findLastInsertedId();
 }
