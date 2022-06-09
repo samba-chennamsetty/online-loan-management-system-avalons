@@ -181,7 +181,9 @@ table.table .avatar {
 						<ul class="nav navbar-nav ml-auto">
 							<li class="nav-item"><form:form method="get"
 									action="/customer/logout">
-									<input type="submit" value="Logout" />
+									<input
+										type="submit"
+										value="Logout (<c:out value="${sessionScope.EMPLOYEE_LOGIN.firstName}"/>)" />
 								</form:form></li>
 						</ul>
 					</div>

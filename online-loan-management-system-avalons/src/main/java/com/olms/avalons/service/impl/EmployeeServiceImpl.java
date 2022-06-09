@@ -22,9 +22,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private EmployeeRepository employeeRepository;
 
 	@Override
-	public Employee getByUserIdAndPasswordAndBranchId(final String emailId, final String password, final Long branchId) {
+	public Employee getByUserIdAndPasswordAndBranchId(final String emailId, final String password,
+			final Long branchId) {
 
-		final EmployeeEntity employeeEntity = employeeRepository.findByEmployeeEmailAndPasswordAndBranchId(emailId, password, branchId);
+		final EmployeeEntity employeeEntity = employeeRepository.findByEmployeeEmailAndPasswordAndBranchId(emailId,
+				password, branchId);
 
 		if (employeeEntity == null) {
 			return null;
@@ -32,23 +34,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		final Employee employee = new Employee();
 		copyProperties(employeeEntity, employee);
+		employee.setBranchName(employeeEntity.getBranchEntity().getName());
+		employee.setBranchCode(employeeEntity.getBranchEntity().getBranchCode());
 
 		return employee;
 	}
-	
+
 	@Override
 	public Employee getById(final Long empId) {
 
 		final EmployeeEntity entity = employeeRepository.findByEmployeeId(empId);
-		
-		if(entity == null) {
+
+		if (entity == null) {
 			return null;
 		}
-		
+
 		final Employee employee = new Employee();
 		copyProperties(entity, employee);
 		employee.setBranchId(entity.getBranchEntity().getBranchId());
-		
+
 		return employee;
 	}
 }

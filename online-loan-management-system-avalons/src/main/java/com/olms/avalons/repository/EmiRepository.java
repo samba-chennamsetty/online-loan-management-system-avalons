@@ -32,4 +32,11 @@ public interface EmiRepository extends JpaRepository<EmiEntity, Long> {
 
 	@Query(value = "SELECT * FROM emi em WHERE em.info_id = :infoId", nativeQuery = true)
 	List<EmiEntity> findEmisByLoanInfoId(@Param("infoId") final Long infoId);
+
+	@Query(value = "SELECT * FROM emi em WHERE em.emi_id = :emiId", nativeQuery = true)
+	EmiEntity findEmiById(@Param("emiId") final Long emiId);
+	
+	@Modifying(clearAutomatically = true)
+	@Query(value = "UPDATE emi em SET em.status = :status WHERE em.emi_id = :emiId", nativeQuery = true)
+	void updatePayment(@Param("emiId") final Long emiId, @Param("status") final String status);
 }

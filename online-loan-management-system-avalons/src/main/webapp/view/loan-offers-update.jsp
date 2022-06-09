@@ -98,8 +98,9 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="nav navbar-nav ml-auto">
 							<li class="nav-item"><form:form method="get"
-									action="/customer/logout">
-									<input type="submit" value="Logout" />
+									action="/employee-login/logout">
+									<input type="submit"
+										value="Logout (<c:out value="${sessionScope.EMPLOYEE_LOGIN.firstName}"/>)" />
 								</form:form></li>
 						</ul>
 					</div>
@@ -151,7 +152,7 @@
 					</div>
 					<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
-			</div>	
+			</div>
 		</div>
 	</div>
 

@@ -22,6 +22,11 @@
 	src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
 </head>
 <body>
+	<h2 style="text-align: center;">
+		<b>Online Loan Management System</b>
+	</h2>
+	<br />
+	<br />
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
@@ -58,10 +63,15 @@
 												<input type="submit" name="login-submit" id="login-submit"
 													tabindex="4" class="form-control btn btn-login"
 													value="Log In">
+
+											</div>
+											<div class="col-sm-6 col-sm-offset-3">
+												<br /> <a class="form-control btn btn-login" href="/"
+													role="button">Home</a>
 											</div>
 										</div>
 									</div>
-									${invalidCustomerLogin} 
+									<div class="alert-danger">${invalidCustomerLogin}</div>
 								</form:form>
 								<form:form id="register-form" action="/customer/register"
 									method="post" commandName="customerLogin"
@@ -126,6 +136,6 @@
 			</div>
 		</div>
 	</div>
-	${successMessage}
+	<div class="alert-success">${successMessage}</div>
 </body>
 </html>

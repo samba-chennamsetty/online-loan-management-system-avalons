@@ -53,7 +53,7 @@ public class LoanInformationController {
 	}
 
 	@PostMapping("emi")
-	private ModelAndView getLoanInfo(final HttpServletRequest request, @RequestBody String infoId) {
+	public ModelAndView getLoanInfo(final HttpServletRequest request, @RequestBody String infoId) {
 
 		final Long loanInfoId = Long.valueOf(removeLastChars(infoId, 1));
 

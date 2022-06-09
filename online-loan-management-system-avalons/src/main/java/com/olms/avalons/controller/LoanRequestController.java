@@ -30,6 +30,7 @@ import com.olms.avalons.model.LoanRequest;
 import com.olms.avalons.service.BranchService;
 import com.olms.avalons.service.LoanOffersService;
 import com.olms.avalons.service.LoanRequestsService;
+import com.olms.avalons.service.UserActivityService;
 import com.olms.avalons.utils.SessionUtils;
 
 /**
@@ -50,6 +51,9 @@ public class LoanRequestController {
 
 	@Autowired
 	private BranchService branchService;
+
+	@Autowired
+	private UserActivityService activityService;
 
 	@GetMapping("save")
 	public ModelAndView applyLoan(final HttpServletRequest request,
@@ -104,6 +108,8 @@ public class LoanRequestController {
 		loanRequest.setCustomerId(customer.getCustomerId());
 
 		loanRequestService.saveLoanRequest(loanRequest);
+
+		activityService.saveUserActivity(Constants.APPLIED, customer.getCustomerId());
 
 		modelAndView.addObject("saveMessage", "Loan Requested Successfully..");
 

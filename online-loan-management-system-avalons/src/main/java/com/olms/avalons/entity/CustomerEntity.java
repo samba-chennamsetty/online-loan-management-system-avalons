@@ -1,6 +1,6 @@
 package com.olms.avalons.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +25,7 @@ public class CustomerEntity {
 	private String emailId;
 	private String mobileNumber;
 	private String address;
-	private Date dob;
+	private Timestamp dob;
 	private String gender;
 	private String password;
 	private String occupation;
@@ -88,11 +88,11 @@ public class CustomerEntity {
 	}
 
 	@Column(name = "dob")
-	public Date getDob() {
+	public Timestamp getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(Timestamp dob) {
 		this.dob = dob;
 	}
 

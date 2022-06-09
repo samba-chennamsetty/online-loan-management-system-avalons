@@ -71,43 +71,65 @@
 						<div class="card rounded-3">
 
 							<div class="card-body p-4">
-								<h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Apply Loan</h3>
+								<h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Profile
+									Update</h3>
 
-								<form:form class="px-md-2" id="register-form"
-									action="/loan-transaction/submit" method="post"
-									commandName="loanRequest" modelAttribute="loanRequest">
-
-									<div class="form-outline mb-4">
-										<form:select path="branchId" items="${branches}" />
-									</div>
-
-									<div class="form-outline mb-4">
-										<form:select path="offerId" items="${loanOffers}" />
-									</div>
-
-									<div class="form-outline mb-4">
-										<form:input type="number" tabindex="1" class="form-control"
-											path="amount" placeholder="Amount" required="required" />
-									</div>
-
-									<div class="form-outline mb-4">
-										<form:input type="number" tabindex="1" class="form-control"
-											path="emiMonths" placeholder="EMI Months" required="required" />
-									</div>
-
-									<div class="form-outline mb-4">
+								<form:form id="register-form"
+									action="/customer-dashboard/update" method="post"
+									commandName="customer" modelAttribute="customer" role="form">
+									<div class="form-group">
 										<form:input type="text" tabindex="1" class="form-control"
-											path="purpose" placeholder="Loan Purpose" required="required" />
+											path="firstName" placeholder="First Name" required="required" />
+									</div>
+									<div class="form-group">
+										<form:input type="text" tabindex="1" class="form-control"
+											path="lastName" placeholder="Last Name" required="required" />
+									</div>
+									<div class="form-group">
+										<form:input type="email" tabindex="1" class="form-control"
+											path="emailId" placeholder="Email" required="required" />
+									</div>
+									<div class="form-group">
+										<form:input type="text" tabindex="1" class="form-control"
+											path="mobileNumber" placeholder="Mobile Number"
+											required="required" />
+									</div>
+									<div class="form-group">
+										<form:input type="text" tabindex="1" class="form-control"
+											path="address" placeholder="Address" required="required" />
+									</div>
+									<div class="form-group">
+										<form:input type="Date" tabindex="1" class="form-control"
+											path="dob" placeholder="Date of birth" />
+									</div>
+									<div class="form-group" tabindex="1">
+										<form:radiobutton path="gender" value="M" label="Male"
+											class="form-control-radio" />
+										<form:radiobutton path="gender" value="F" label="Female"
+											class="" />
+
+									</div>
+									<div class="form-group">
+										<form:input type="password" path="password"
+											class="form-control" tabindex="1" placeholder="Password"
+											required="required" />
 									</div>
 
 									<div class="form-group">
-										<button type="submit" class="btn btn-success btn-lg btn-block">Apply
-											Loan</button>
+										<form:input type="text" path="ssnNumber" class="form-control"
+											tabindex="1" placeholder="Social Number" required="required" />
 									</div>
 
+									<div class="form-group">
+										<form:input type="text" path="occupation" class="form-control"
+											tabindex="1" placeholder="Occupation" required="required" />
+									</div>
+									<div class="form-group">
+										<button type="submit" class="btn btn-success btn-lg btn-block">Update</button>
+									</div>
 								</form:form>
 
-								${saveMessage}
+								<div class="alert-success">${message}</div>
 							</div>
 						</div>
 					</div>

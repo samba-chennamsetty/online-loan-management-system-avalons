@@ -31,7 +31,8 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link">Employee Login</a>
+								<a href="#" class="active" id="login-form-link">Employee
+									Login</a>
 							</div>
 						</div>
 						<hr>
@@ -43,6 +44,7 @@
 									commandName="employeeLogin" modelAttribute="employeeLogin"
 									style="display: block;">
 									<div class="form-group">
+										<b>Branch:</b>
 										<form:select path="branchId" items="${branches}" />
 									</div>
 									<div class="form-group">
@@ -56,13 +58,18 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-
 												<input type="submit" value="Log In" tabindex="4"
 													class="form-control btn btn-login" />
 											</div>
+											<div class="col-sm-6 col-sm-offset-3">
+												<br /> <a class="form-control btn btn-login" href="/"
+													role="button">Home</a>
+											</div>
 										</div>
 									</div>
-									${invalidAdminLogin}
+									<div class="alert-danger">
+										<b>${invalidAdminLogin}</b>
+									</div>
 								</form:form>
 							</div>
 						</div>

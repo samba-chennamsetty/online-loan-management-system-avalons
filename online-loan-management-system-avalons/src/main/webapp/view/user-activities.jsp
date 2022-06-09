@@ -193,94 +193,28 @@ table.table .avatar {
 						<div class="table-title">
 							<div class="row">
 								<div class="col-sm-6">
-									<h2>EMI Info</h2>
+									<h2>Loans</h2>
 								</div>
 							</div>
 						</div>
 						<table class="table table-striped table-hover">
 							<thead>
 								<tr>
-									<th>Period</th>
-									<th>Amount</th>
-									<th>Payment Date</th>
-									<th>Current Balance</th>
-									<th>Status</th>
+									<th>Activity Type</th>
+									<th>Time</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="emi" items="${eims}">
+								<c:forEach var="activity" items="${activities}">
 									<tr>
-										<td>${emi.period}</td>
-										<td>${emi.payment}$</td>
-										<td>${emi.displayPaymentDate}</td>
-										<td>${emi.currentBalance}$</td>
-										<td>${emi.emiStatus}</td>
-										<c:if test="${emi.paymentOption}">
-											<td>
-												<button type="button" onclick="getEmiInfo(${emi.emiId})"
-													class="btn btn-success">Pay</button>
-											</td>
-										</c:if>
+										<td>${activity.activityType}</td>
+										<td>${activity.displayActivityTime}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-
-
-	<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header text-center">
-					<h4 class="modal-title w-100 font-weight-bold">Emi Payment</h4>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body mx-3">
-					<div class="md-form mb-3">
-						<label for="period">Period</label> <input type="number"
-							readonly="readonly" id="period" name="period" value=""
-							class="form-control">
-					</div>
-					<div class="md-form mb-3">
-						<label for="payment">Amount to be paid</label> <input
-							readonly="readonly" type="number" id="payment" name="payment"
-							value="" class="form-control">
-					</div>
-					<div class="md-form mb-3">
-						<label for="paymentDate">Payment Date</label> <input type="text"
-							readonly="readonly" id="paymentDate" name="paymentDate" value=""
-							class="form-control">
-					</div>
-					<div class="md-form mb-3">
-						<label for="currentBalance">Current Balance</label> <input
-							readonly="readonly" type="number" id="currentBalance"
-							name="currentBalance" value="" class="form-control">
-					</div>
-					<div class="md-form mb-3">
-						<label for="paymentType">Payment Type</label> <select
-							name="paymentType" id="paymentType" class="form-control">
-							<option value="Credit">Credit Card</option>
-							<option value="Debit">Debit Card</option>
-							<option value="Cash">Cash</option>
-						</select>
-					</div>
-					<input type="hidden" id="emiId" name="emiId" value="">
-				</div>
-				<div class="modal-footer d-flex justify-content-right">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-					<button class="btn btn-success" onclick="payEmi()">Pay</button>
-				</div>
-
-				<div class="alert alert-success" id="successMessage"></div>
 			</div>
 		</div>
 	</div>
@@ -304,48 +238,11 @@ table.table .avatar {
 		});
 	});
 
-	function getEmiInfo(emiId) {
+	function getLoanInfo(infoId) {
 
-		console.log(emiId);
-		$.ajax({
-	        url: '/emi/info',
-	        type: 'POST',
-	        contentType: 'application/json',
-	        data: JSON.stringify(emiId),
-	        error: function () {
-	        },
-	        success: function (response) {
-	        	$("#period").val(response.emi.period);
-	        	$("#paymentDate").val(response.emi.displayPaymentDate);
-	        	$("#payment").val(response.emi.payment);
-	        	$("#currentBalance").val(response.emi.currentBalance);
-	        	$("#emiId").val(response.emi.emiId);
-	        	$('#successMessage').hide();
-	        	$('#modalLoginForm').modal('show');
-	        	
-	        }
-	    });
-	}
-	
-	function payEmi(){
-		
-		$.ajax({
-			 url: '/emi/pay',
-	        type: 'POST',
-	        contentType: 'application/json',
-	        data: JSON.stringify({
-	        	emiId: $("#emiId").val(),
-	        	paymentType : $('#paymentType').find(":selected").val(),
-	        }),
-	        error: function () {
-	        },
-	        success: function (response) {
-	        	$('#successMessage').text(response.message);
-	        	$('#successMessage').show();
-	        	
-	        	//location.href = "/loan-offers/display";
-	        }
-	    });
+		var id = "#form" + infoId;
+		var varId = "var" + infoId;
+		$(id).submit();
 	}
 </script>
 </body>

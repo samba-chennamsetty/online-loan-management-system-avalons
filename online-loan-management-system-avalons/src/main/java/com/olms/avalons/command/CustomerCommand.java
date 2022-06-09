@@ -1,8 +1,6 @@
 package com.olms.avalons.command;
 
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
+import java.sql.Date;
 
 /**
  * Customer command.
@@ -19,7 +17,6 @@ public class CustomerCommand {
 	private String mobileNumber;
 	private String address;
 
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dob;
 	private String gender;
 	private String password;

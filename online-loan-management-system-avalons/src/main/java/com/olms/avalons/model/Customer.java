@@ -1,6 +1,6 @@
 package com.olms.avalons.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Customer model.

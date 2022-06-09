@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.olms.avalons.command.CustomerCommand;
+import com.olms.avalons.constants.Constants;
 import com.olms.avalons.model.Customer;
 import com.olms.avalons.service.CustomerService;
+import com.olms.avalons.service.UserActivityService;
+import com.olms.avalons.utils.SessionUtils;
 
 /**
  * Customer login controller.
@@ -32,6 +35,9 @@ public class CustomerLoginController {
 
 	@Autowired
 	private CustomerService customerService;
+
+	@Autowired
+	private UserActivityService activityService;
 
 	@GetMapping("display")
 	public ModelAndView display(final HttpServletRequest request,
@@ -64,6 +70,8 @@ public class CustomerLoginController {
 		final HttpSession session = request.getSession();
 		session.setAttribute(CUSTOMER_LOGIN, customer);
 
+		activityService.saveUserActivity(Constants.LOGIN, customer.getCustomerId());
+
 		return new ModelAndView("redirect:/customer-dashboard/display");
 	}
 
@@ -86,7 +94,10 @@ public class CustomerLoginController {
 	public ModelAndView logout(final HttpServletRequest request) {
 
 		final HttpSession session = request.getSession();
+
 		if (session != null) {
+			final Customer customer = SessionUtils.getCustomerInfo(request);
+			activityService.saveUserActivity(Constants.LOGOUT, customer.getCustomerId());
 			session.invalidate();
 		}
 

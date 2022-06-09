@@ -13,6 +13,12 @@ import org.springframework.stereotype.Repository;
 import com.olms.avalons.entity.LoanRequestsEntity;
 import com.olms.avalons.model.LoanRequest;
 
+/**
+ * Loan Request Repository that communicates with Loan request entity.
+ *
+ * @author Samba Chennamsetty
+ * @since Jun 8, 2022
+ */
 @Repository
 @Transactional
 public interface LoanRequestsRepository extends JpaRepository<LoanRequestsEntity, Long> {

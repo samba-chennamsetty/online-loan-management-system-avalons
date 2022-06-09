@@ -1,6 +1,6 @@
 package com.olms.avalons.entity;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +25,7 @@ public class UserActivityEntity {
 	private Long activityId;
 	// Loan applied, password changed, login, logout, payment paid.
 	private String activityType;
-	private Date activityTime;
+	private Timestamp activityTime;
 
 	private CustomerEntity customerEntity;
 
@@ -41,11 +41,11 @@ public class UserActivityEntity {
 	}
 
 	@Column(name = "activity_time")
-	public Date getActivityTime() {
+	public Timestamp getActivityTime() {
 		return activityTime;
 	}
 
-	public void setActivityTime(Date activityTime) {
+	public void setActivityTime(Timestamp activityTime) {
 		this.activityTime = activityTime;
 	}
 

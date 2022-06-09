@@ -1,5 +1,7 @@
 package com.olms.avalons.repository;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,4 +32,14 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> 
 
 	@Query(value = "SELECT LAST_INSERT_ID()", nativeQuery = true)
 	Long findLastInsertedId();
+
+	@Query(value = "select * from loan.customer c where c.customer_id = :customerId", nativeQuery = true)
+	CustomerEntity findByCustomerById(final Long customerId);
+
+	@Modifying(clearAutomatically = true)
+	@Query(value = "UPDATE loan.customer cus SET cus.address = :#{#customer.address}, cus.dob = :#{#customer.dob}, cus.email_id = :#{#customer.emailId}, cus.first_name = :#{#customer.firstName}, cus.gender =:#{#customer.gender}, cus.last_name = :#{#customer.lastName}, cus.contact_num = :#{#customer.mobileNumber}, cus.password = :#{#customer.password}, cus.ssn_number = :#{#customer.ssnNumber}, cus.occupation = :#{#customer.occupation} WHERE cus.customer_id = :#{#customer.customerId}", nativeQuery = true)
+	void updateCustomer(@Param("customer") final Customer customer);
+
+	@Query(value = "select * from loan.customer", nativeQuery = true)
+	List<CustomerEntity> findAllCustomers();
 }

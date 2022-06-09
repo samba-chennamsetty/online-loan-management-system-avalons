@@ -17,6 +17,9 @@ public class Employee {
 	private String password;
 	private Long branchId;
 
+	private String branchName;
+	private String branchCode;
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -79,5 +82,21 @@ public class Employee {
 
 	public void setEmpId(Long empId) {
 		this.empId = empId;
+	}
+
+	public String getBranchName() {
+		return branchName;
+	}
+
+	public void setBranchName(String branchName) {
+		this.branchName = branchName;
+	}
+
+	public String getBranchCode() {
+		return branchCode;
+	}
+
+	public void setBranchCode(String branchCode) {
+		this.branchCode = branchCode;
 	}
 }

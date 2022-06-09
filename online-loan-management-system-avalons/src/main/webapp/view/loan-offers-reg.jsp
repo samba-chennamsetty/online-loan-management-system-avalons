@@ -89,8 +89,8 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="nav navbar-nav ml-auto">
 							<li class="nav-item"><form:form method="get"
-									action="/customer/logout">
-									<input type="submit" value="Logout" />
+									action="/employee-login/logout">
+									<input type="submit" value="Logout (<c:out value="${sessionScope.EMPLOYEE_LOGIN.firstName}"/>)" />
 								</form:form></li>
 						</ul>
 					</div>
@@ -123,7 +123,7 @@
 
 									<div class="form-outline mb-4">
 										<form:input type="number" tabindex="1" class="form-control"
-											path="interest" placeholder="Interest" required="required"/>
+											path="interest" placeholder="Interest" required="required" />
 									</div>
 
 									<div class="form-outline mb-4">
@@ -143,38 +143,13 @@
 									<div class="form-group">
 										<button type="submit" class="btn btn-success btn-lg btn-block">Save</button>
 									</div>
+									<div class="alert-success">${saveMessage}</div>
 								</form:form>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			${saveMessage}
-
-			<%-- 			<form:form class="form-inline" id="register-form"
-				action="/loan-offers/submit" method="post" commandName="loanOffers"
-				modelAttribute="loanOffers">
-				<div class="form-group">
-					<form:input type="text" tabindex="1" class="form-control"
-						path="loanName" placeholder="Loan Name" required="required" />
-				</div>
-				<div class="form-group">
-					<form:input type="number" tabindex="1" class="form-control"
-						path="amount" placeholder="amount" required="required" />
-				</div>
-				<div class="form-group">
-					<form:input type="text" tabindex="1" class="form-control"
-						path="loanRange" placeholder="Loan Range" required="required" />
-				</div>
-				<div class="form-group">
-					<form:input type="number" tabindex="1" step=".01"
-						class="form-control" path="interest" placeholder="Interest"
-						required="required" />
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-success btn-lg btn-block">Save</button>
-				</div>
-			</form:form> --%>
 		</div>
 	</div>
 

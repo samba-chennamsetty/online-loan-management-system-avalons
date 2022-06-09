@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.olms.avalons.entity.LoanTypeEntity;
 
 /**
- * Loan type repository.
+ * Loan type repository that communicates with Loan type entity..
  *
  * @author Samba Chennamsetty
  * @since May 4, 2022
