@@ -494,7 +494,7 @@ a {
 		</div>
 		<div class="bg-blue py-4">
 			<div class="">
-				<h5 class="text-center">A project By Avalons Team..! (Arif
+				<h5 class="text-center">A Project By Avalons Team....!       (Arif
 					Pasha, Jagadishwar Reddy, Samba Chennamsetty, Siva Rama Krishna,
 					Teja Sri & Vamsi Kiran..)</h5>
 			</div>
